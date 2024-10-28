@@ -276,6 +276,8 @@ void peopleManage() {
 
 }
 
+//Ö÷º¯Êý
+
 int main() {
 	int n=1;
 	while (n!=0) {
