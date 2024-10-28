@@ -5,8 +5,6 @@
 
 using namespace std;
 
-//这是主函数
-
 //全局变量区
 extern int doorID;
 extern vector<Door> d;
