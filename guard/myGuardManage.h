@@ -17,6 +17,9 @@ extern "C" {
 		string owner;
 	};
 
+	//全局变量
+	extern int guardID;
+	extern vector<Guard> g;
 
 	//函数声明
 

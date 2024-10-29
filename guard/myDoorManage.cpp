@@ -45,6 +45,12 @@ void eraseDoor() {
 		if (sure=='Y'||sure=='y') {//判断是否删除
 			d.erase(d.begin() + tempID);
 			cout << "已成功删除" << endl;
+
+			//重新排id
+			for (int i = 0; i < d.size(); i++) {
+				d.at(i).m_ID = i;
+			}
+
 		}
 		else {
 			cout << "已取消删除" << endl;

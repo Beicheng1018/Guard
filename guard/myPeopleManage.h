@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include"myGuardManage.h"
 
 using namespace std;
 
@@ -13,8 +14,7 @@ extern "C" {
 	class People {
 	public:
 		string m_name;
-		int m_ID;
-		int address;
+		vector<Guard> HaveGuard;
 	};
 
 	//º¯ÊıÉùÃ÷

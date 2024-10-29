@@ -136,8 +136,13 @@ void lookAllMessage(int key) {
 	}
 	if (key == 3) {//居户管理
 		for (People P : p) {
-			cout << P.m_ID << " " << P.m_name << " " << (int)P.address << endl;
+			cout << P.m_name << " ";
+			for (Guard G : P.HaveGuard) {
+				cout << G.Key << " ";
+			}
+			cout << endl;
 		}
+		
 	}
 }
 
@@ -274,6 +279,17 @@ void peopleManage() {
 		system("cls");//清屏
 	}
 
+}
+
+//设置输出居中
+void middle(string s)//居中输出
+{
+	HANDLE hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO bInfo;
+	GetConsoleScreenBufferInfo(hOutput, &bInfo);//获取窗口长度
+	int len = bInfo.dwSize.X / 2 - s.size() / 2;//空多少个格
+	printf("\033[%dC", len);//光标右移
+	cout << s;
 }
 
 //主函数

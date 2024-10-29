@@ -25,6 +25,9 @@ void eraseGuard() {
 	cin >> tempID;
 	if (tempID <= guardID) {
 		g.erase(g.begin() + tempID);
+
+
+
 	}
 	else {
 		cout << "请输入一个有效的id" << endl;
