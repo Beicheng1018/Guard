@@ -12,7 +12,7 @@ void addNewPeople() {
 	while (1) {
 		cout << "正在增加一个新的门禁：" << endl;
 		class Guard newGuard;
-		cout << "请输入登记人员的名字:";
+		cout << "请输入新的门禁持有者的名字:";
 		cin >> newGuard.owner;
 		cout << "请输入门的密钥:";
 		cin >> newGuard.Key;

@@ -13,11 +13,21 @@ extern vector<Guard> g;
 extern int peopleID;
 extern vector<People> p;
 
+//居中输出
+void middle(string s)
+{
+	HANDLE hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO bInfo;
+	GetConsoleScreenBufferInfo(hOutput, &bInfo);//获取窗口长度
+	int len = bInfo.dwSize.X / 2 - s.size() / 2;//空多少个格
+	printf("\033[%dC", len);//光标右移
+	cout << s;
+}
 
 void printColorMessage(string str,int color) {
 	HANDLE consolewnd = GetStdHandle(STD_OUTPUT_HANDLE);//获得控制台的窗口句柄
 	SetConsoleTextAttribute(consolewnd, color);
-	cout << str ;
+	middle( str );
 	SetConsoleTextAttribute(consolewnd, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);//改回原来的颜色
 }
 
@@ -69,16 +79,14 @@ void openTheDoor(class TurePeople people) {
 
 
 void meau() {
-	printf("********************************\n");
-	printf("**********");
-	printColorMessage("门禁管理系统",0x0d);
-	printf("**********\n");
-	printf("=        1.门的信息管理        =\n");
-	printf("=        2.门禁卡  管理        =\n");
-	printf("=        3.居户信息管理        =\n");
-	printf("=        4. 模 拟 开 门        =\n");
-	printf("=            0.exit            =\n");
-	printf("================================\n");
+	middle("********************************\n");
+	printColorMessage("**********门禁管理系统**********\n",0x0d);
+	middle("=        1.门的信息管理        =\n");
+	middle("=        2.门禁卡  管理        =\n");
+	middle("=        3.居户信息管理        =\n");
+	middle("=        4. 模 拟 开 门        =\n");
+	middle("=            0.exit            =\n");
+	middle("================================\n");
 }
 
 
@@ -153,17 +161,15 @@ void doorManage() {
 	int key = 1;//key决定增删改如何调用
 	while (n != 0) {
 		//打印菜单
-		printf("********************************\n");
-		printf("**********");
-		printColorMessage("门的信息管理",0x0a);
-		printf("**********\n");
-		printf("=          1.增加信息          =\n");
-		printf("=          2.删除信息          =\n");
-		printf("=          3.修改信息          =\n");
-		printf("=          4.查看信息          =\n");
-		printf("=            0.exit            =\n");
-		printf("================================\n");
-		printf("请输入一个数字:");
+		middle("********************************\n");
+		printColorMessage("**********门的信息管理**********\n",0x0a);
+		middle("=          1.增加信息          =\n");
+		middle("=          2.删除信息          =\n");
+		middle("=          3.修改信息          =\n");
+		middle("=          4.查看信息          =\n");
+		middle("=            0.exit            =\n");
+		middle("================================\n");
+		middle("请输入一个数字:");
 		cin >> n;
 		system("cls");//清屏
 
@@ -197,17 +203,15 @@ void guardManage() {
 	int key = 2;
 	while (n != 0) {
 		//打印菜单
-		printf("*********************************\n");
-		printf("**********");
-		printColorMessage("门禁卡信息管理", 0x0b);
-		printf("**********\n");
-		printf("=           1.增加信息          =\n");
-		printf("=           2.删除信息          =\n");
-		printf("=           3.修改信息          =\n");
-		printf("=           4.查看信息          =\n");
-		printf("=             0.exit            =\n");
-		printf("=================================\n");
-		printf("请输入一个数字:");
+		middle("*********************************\n");
+		printColorMessage("**********门禁卡信息管理**********\n", 0x0b);
+		middle("=           1.增加信息          =\n");
+		middle("=           2.删除信息          =\n");
+		middle("=           3.修改信息          =\n");
+		middle("=           4.查看信息          =\n");
+		middle("=             0.exit            =\n");
+		middle("=================================\n");
+		middle("请输入一个数字:");
 		cin >> n;
 		system("cls");//清屏
 
@@ -243,17 +247,15 @@ void peopleManage() {
 	int key = 3;
 	while (n != 0) {
 		//打印菜单
-		printf("********************************\n");
-		printf("************");
-		printColorMessage("居户管理", 0x0c);
-		printf("************\n");
-		printf("=          1.增加信息          =\n");
-		printf("=          2.删除信息          =\n");
-		printf("=          3.修改信息          =\n");
-		printf("=          4.查看信息          =\n");
-		printf("=            0.exit            =\n");
-		printf("================================\n");
-		printf("请输入一个数字:");
+		middle("********************************\n");
+		printColorMessage("************居户管理************\n", 0x0c);
+		middle("=          1.增加信息          =\n");
+		middle("=          2.删除信息          =\n");
+		middle("=          3.修改信息          =\n");
+		middle("=          4.查看信息          =\n");
+		middle("=            0.exit            =\n");
+		middle("================================\n");
+		middle("请输入一个数字:");
 		cin >> n;
 		system("cls");//清屏
 		
@@ -281,24 +283,13 @@ void peopleManage() {
 
 }
 
-//设置输出居中
-void middle(string s)//居中输出
-{
-	HANDLE hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_SCREEN_BUFFER_INFO bInfo;
-	GetConsoleScreenBufferInfo(hOutput, &bInfo);//获取窗口长度
-	int len = bInfo.dwSize.X / 2 - s.size() / 2;//空多少个格
-	printf("\033[%dC", len);//光标右移
-	cout << s;
-}
-
 //主函数
 
 int main() {
 	int n=1;
 	while (n!=0) {
 		meau();
-		printf("请输入一个数字:");
+		middle("请输入一个数字:");
 		cin >> n;
 		
 		//判断是否有效

@@ -1,3 +1,3 @@
-﻿  Main.cpp
-C:\Users\27985\source\repos\guard\guard\Main.cpp(290,10): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+﻿  myPeopleManage.cpp
+C:\Users\27985\source\repos\guard\guard\myPeopleManage.cpp(5,14): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   guard.vcxproj -> C:\Users\27985\source\repos\guard\x64\Debug\guard.exe
