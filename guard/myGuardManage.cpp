@@ -2,14 +2,14 @@
 
 //全局变量
 
-vector<Guard> g;
+vector<Guard> g = { {0,901},{1,902},{2,111},{3,112},{4,113},{5,114}, {6,121},
+{7,122},{8,123},{9,124},{10,131},{11,132},{12,133},{13,134} };
+
 int guardID = g.size();
 
 void addNewGuard() {
 	cout << "正在增加一个新的门禁：" << endl;
 	class Guard newGuard;
-	cout<< "请输入登记人员的名字:";
-	cin >> newGuard.owner;
 	cout << "请输入门的密钥:";
 	cin >> newGuard.Key;
 	newGuard.m_ID = guardID;
@@ -25,9 +25,6 @@ void eraseGuard() {
 	cin >> tempID;
 	if (tempID <= guardID) {
 		g.erase(g.begin() + tempID);
-
-
-
 	}
 	else {
 		cout << "请输入一个有效的id" << endl;
@@ -41,8 +38,6 @@ void chgGuardMessage() {
 	cin >> tempID;
 	if (tempID <= guardID) {
 		class Guard newGuard;//创建新的门
-		cout << "请输入要更改的人员的名字:";
-		cin >> newGuard.owner;
 		cout << "请输入新的门的密钥:";
 		cin >> newGuard.Key;
 		newGuard.m_ID = g[tempID].m_ID;//id必须一样

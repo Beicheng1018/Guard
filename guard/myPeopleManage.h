@@ -4,6 +4,7 @@
 #include<vector>
 #include<string>
 #include"myGuardManage.h"
+#include"myDoorManage.h"
 
 using namespace std;
 
@@ -14,7 +15,9 @@ extern "C" {
 	class People {
 	public:
 		string m_name;
-		vector<Guard> HaveGuard;
+		int m_peopleKey;
+		int haveGuard;
+		//vector<Guard> HaveGuard;
 	};
 
 	//º¯ÊıÉùÃ÷

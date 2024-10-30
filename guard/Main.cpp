@@ -39,7 +39,7 @@ public:
 };
 
 //一个已经完备的人
-TurePeople XiaoWang = { "小王" ,{ {0,124,"老王"},{1,123,"老王"}} };
+//TurePeople XiaoWang = { "小王" ,{ {0,124,"老王"},{1,123,"老王"}} };
 
 int unlocking(int key) {
 	int flag=0;
@@ -139,16 +139,12 @@ void lookAllMessage(int key) {
 	}
 	if (key == 2) {//门禁卡信息管理
 		for (Guard G : g) {
-			cout << G.m_ID << " " << G.owner << " " << G.Key << endl;
+			cout << G.m_ID <<  " " << G.Key << endl;
 		}
 	}
 	if (key == 3) {//居户管理
 		for (People P : p) {
-			cout << P.m_name << " ";
-			for (Guard G : P.HaveGuard) {
-				cout << G.Key << " ";
-			}
-			cout << endl;
+			cout << P.m_name<<" " << P.m_peopleKey<<" " << P.haveGuard << endl;
 		}
 		
 	}
@@ -307,7 +303,7 @@ int main() {
 				peopleManage();
 				break;
 			case 4:
-				openTheDoor(XiaoWang);
+				//openTheDoor(XiaoWang);
 				break;
 			default:
 				cout << "已退出程序" << endl;

@@ -14,7 +14,6 @@ extern "C" {
 	public:
 		int m_ID;
 		int Key;//一个3位数字
-		string owner;
 	};
 
 	//全局变量
