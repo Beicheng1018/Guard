@@ -49,6 +49,22 @@ void erasePeople() {
 
 
 void chgPeopleMessage() {
-	cout << "待添加此功能" << endl;
-	//假设我们添加了此功能
+	string name;
+	int flag = 1;
+	cout << "请输入您的名字:";
+	cin >> name;
+	for (int i = 0; i < p.size(); i++) {
+		if (p.at(i).m_name == name) {
+			cout << "您只能更改几号楼几单元:";
+			cin >> p.at(i).haveGuard;
+			flag = 0;
+			break;
+		}
+	}
+	if (flag) {
+		cout << "未能找到您的信息" << endl;
+	}
+	else {
+		cout << "更改成功!" << endl;
+	}
 }
