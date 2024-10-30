@@ -50,20 +50,5 @@ void erasePeople() {
 
 void chgPeopleMessage() {
 	cout << "待添加此功能" << endl;
-	//int tempID;
-	//cout << "请输入要修改的人的id:";
-	//cin >> tempID;
-	//if (tempID <= peopleID) {
-	//	class People newPeople;//创建新的门
-	//	cout << "请输入要更改的人员的名字:";
-	//	cin >> newPeople.m_name;
-	//	cout << "请输入要更新的住址:";
-	//	cin >> newPeople.address;
-	//	newPeople.m_ID = p[tempID].m_ID;//id必须一样
-	//	p.erase(p.begin() + tempID);//先删除
-	//	p.insert(p.begin() + tempID, newPeople);//后插入，以实现修改
-	//}
-	//else {
-	//	cout << "请输入一个有效的id" << endl;
-	//}
+	//假设我们添加了此功能
 }
