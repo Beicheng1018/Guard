@@ -42,8 +42,6 @@ public:
 int unlocking(int key) {
 	int flag=0;
 	for (Door tempDoor : d) {//遍历已存在的门
-
-		
 		if (key / 100 == 1&&flag==0) {//如果该门禁的key能打开单元门，则一定能打开大门
 			cout << "大门已打开!" << endl;
 			flag = 1;
@@ -150,7 +148,6 @@ void lookAllMessage(int key) {
 
 
 void doorManage() {	
-
 	int n = 1;
 	int key = 1;//key决定增删改如何调用
 	while (n != 0) {
@@ -192,7 +189,6 @@ void doorManage() {
 
 
 void guardManage() {	
-
 	int n = 1;
 	int key = 2;
 	while (n != 0) {
@@ -235,8 +231,6 @@ void guardManage() {
 
 
 void peopleManage() {
-	
-
 	int n = 1;
 	int key = 3;
 	while (n != 0) {
