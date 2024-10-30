@@ -38,8 +38,6 @@ public:
 	vector<Guard> HaveGuard;
 };
 
-//一个已经完备的人
-//TurePeople XiaoWang = { "小王" ,{ {0,124,"老王"},{1,123,"老王"}} };
 
 int unlocking(int key) {
 	int flag=0;

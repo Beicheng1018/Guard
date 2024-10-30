@@ -17,7 +17,6 @@ extern "C" {
 		string m_name;
 		int m_peopleKey;
 		int haveGuard;
-		//vector<Guard> HaveGuard;
 	};
 
 	//º¯ÊıÉùÃ÷
