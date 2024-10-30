@@ -27,51 +27,65 @@ void middle(string s)
 void printColorMessage(string str,int color) {
 	HANDLE consolewnd = GetStdHandle(STD_OUTPUT_HANDLE);//获得控制台的窗口句柄
 	SetConsoleTextAttribute(consolewnd, color);
-	middle( str );
+	middle(str);
 	SetConsoleTextAttribute(consolewnd, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);//改回原来的颜色
 }
 
-
-class TurePeople {//在此处定义 人
-public:
+//模拟开门
+void openTheDoor() {
 	string name;
-	vector<Guard> HaveGuard;
-};
-
-
-int unlocking(int key) {
-	int flag=0;
-	for (Door tempDoor : d) {//遍历已存在的门
-		if (key / 100 == 1&&flag==0) {//如果该门禁的key能打开单元门，则一定能打开大门
-			cout << "大门已打开!" << endl;
-			flag = 1;
-		}
-
-		if (key == tempDoor.Key) {
-			cout <<tempDoor.m_type<<tempDoor.Key << "已打开!" << endl;
-			flag= 2;
+	cout << "请从现有的人员库内选择一名:" << endl;
+	for (People P : p) {
+		cout << P.m_name << endl;
+	}
+	cout << "请输入选择的姓名:";
+	cin >> name;
+	for (People P : p) {
+		if (P.m_name == name) {
+			int building = (P.haveGuard-P.m_peopleKey) / 10 % 10;
+			int unit = (P.haveGuard - P.m_peopleKey) % 10;
+			cout << name << "能打开的门是(除大门)" << building << "号楼" << unit << "单元" << endl;
+			break;
 		}
 	}
-	Sleep(1000);
-	return flag;
+	
+	
 }
 
 
-void openTheDoor(class TurePeople people) {
-
-	for (Guard tempG : people.HaveGuard) {//遍历这个人拥有的门禁
-		if (unlocking(tempG.Key)==2) {//确认这个门禁能打开哪些锁
-			cout << "欢迎业主回家!" << endl;
-		}
-		else if (unlocking(tempG.Key) == 1) {
-			cout << "您拥有进入本小区的资格" << endl;
-		}
-		else {
-			cout << "外来人请勿进入!" << endl;
-		}
-		Sleep(1000);
-	}
-}
+//int unlocking(int key) {
+//	int flag=0;
+//	for (Door tempDoor : d) {//遍历已存在的门
+//		if (key / 100 == 1&&flag==0) {//如果该门禁的key能打开单元门，则一定能打开大门
+//			cout << "大门已打开!" << endl;
+//			flag = 1;
+//		}
+//
+//		if (key == tempDoor.Key) {
+//			cout <<tempDoor.m_type<<tempDoor.Key << "已打开!" << endl;
+//			flag= 2;
+//		}
+//	}
+//	Sleep(1000);
+//	return flag;
+//}
+//
+//
+//void openTheDoor(class TurePeople people) {
+//
+//	for (Guard tempG : people.HaveGuard) {//遍历这个人拥有的门禁
+//		if (unlocking(tempG.Key)==2) {//确认这个门禁能打开哪些锁
+//			cout << "欢迎业主回家!" << endl;
+//		}
+//		else if (unlocking(tempG.Key) == 1) {
+//			cout << "您拥有进入本小区的资格" << endl;
+//		}
+//		else {
+//			cout << "外来人请勿进入!" << endl;
+//		}
+//		Sleep(1000);
+//	}
+//}
 
 
 void meau() {
@@ -295,7 +309,7 @@ int main() {
 				peopleManage();
 				break;
 			case 4:
-				//openTheDoor(XiaoWang);
+				openTheDoor();
 				break;
 			default:
 				cout << "已退出程序" << endl;

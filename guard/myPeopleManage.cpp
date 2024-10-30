@@ -1,10 +1,19 @@
 #include"myPeopleManage.h"
+#include<ctime>
+#include<cstdlib>//随机数
+#include<Windows.h>
 
 //全局变量
 extern vector<Door> d;
 
-vector<People>p = { {"小王",123,111}};
+vector<People>p = { {"小王",123,234}};
 int peopleID = p.size();
+
+//生成随机的个人标识
+int getRand(int min,int max) {
+	srand(time(NULL));
+	return (rand() % (max - min - 1)) + min;
+}
 
 
 void addNewPeople() {
@@ -13,13 +22,21 @@ void addNewPeople() {
 	int flag = 0;
 	cout << "请输入登记人员的名字:";
 	cin >> newPeople.m_name;
-	cout << "请给这个人一条独特的标识(三位数字):";
-	cin >> newPeople.m_peopleKey;
+	cout << "正在给这个人一条独特的标识(三位数字)" << endl;
+	Sleep(1000);
+	newPeople.m_peopleKey = getRand(100,999);
+	cout << "成功!" << endl;
+
 	cout << "请问您是几号楼几单元(三位数字,1开头，后两位分别是楼号和单元号):";
 	cin >> newPeople.haveGuard;
+
 	for (Door everyDoor : d) {
 		if (everyDoor.Key == newPeople.haveGuard) {
 			cout << "即将给您颁发门禁" << endl;
+
+			//简单加密
+			newPeople.haveGuard += (newPeople.m_peopleKey);
+
 			p.push_back(newPeople);
 			cout << "成功" << endl;
 			flag = 1;
@@ -44,6 +61,9 @@ void erasePeople() {
 	}
 	if (index == p.size()) {
 		cout << "删除失败，请检查姓名是否正确" << endl;
+	}
+	else {
+		cout << "删除成功!" << endl;
 	}
 }
 
