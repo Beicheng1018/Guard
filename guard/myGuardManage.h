@@ -14,6 +14,7 @@ extern "C" {
 	public:
 		int m_ID;
 		int Key;//一个3位数字
+		int address;
 	};
 
 	//全局变量

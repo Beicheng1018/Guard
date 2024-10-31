@@ -77,6 +77,7 @@ void chgPeopleMessage() {
 		if (p.at(i).m_name == name) {
 			cout << "您只能更改几号楼几单元:";
 			cin >> p.at(i).haveGuard;
+			p.at(i).haveGuard += p.at(i).m_peopleKey;
 			flag = 0;
 			break;
 		}
