@@ -6,7 +6,7 @@
 //全局变量
 extern vector<Door> d;
 
-vector<People>p = { {"小王",123,234}};
+vector<People>p = { {"小王",123,234},{"小孙",321,434} ,{"小李",111,234} };
 int peopleID = p.size();
 
 //生成随机的个人标识

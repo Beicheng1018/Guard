@@ -13,6 +13,8 @@ extern vector<Guard> g;
 extern int peopleID;
 extern vector<People> p;
 
+
+
 //居中输出
 void middle(string s)
 {
@@ -24,12 +26,65 @@ void middle(string s)
 	cout << s;
 }
 
+//打印彩色字体 正常
+void printColorMessageN(string str, int color) {
+	HANDLE consolewnd = GetStdHandle(STD_OUTPUT_HANDLE);//获得控制台的窗口句柄
+	SetConsoleTextAttribute(consolewnd, color);
+	cout<<str;
+	SetConsoleTextAttribute(consolewnd, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);//改回原来的颜色
+}
+
+
+//打印彩色字体 居中
 void printColorMessage(string str,int color) {
 	HANDLE consolewnd = GetStdHandle(STD_OUTPUT_HANDLE);//获得控制台的窗口句柄
 	SetConsoleTextAttribute(consolewnd, color);
 	middle(str);
 	SetConsoleTextAttribute(consolewnd, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);//改回原来的颜色
 }
+
+//登录动画
+void loginProcess() {
+	system("cls");//清屏
+	middle("正在初始化\n");
+	middle("\b\b\b\b\b\b");//退格，为了好看
+	for (int i = 0; i < 9; i++) {
+		int color = i;//使颜色保持在0x0a---0x0f
+		if (i > 6) {
+			color = i - 7;
+		}
+		printColorMessageN("**",0x09+color);
+		Sleep(250);
+	}
+	//system("cls");//清屏
+
+}
+
+//登录设置
+void login() {
+	string loginID;
+	string password;
+	printColorMessage("只有管理员才有权限进行门禁管理\n",0x0f);
+
+
+	while (1) {
+		printColorMessage("\b\b管理员账号:", 0x0f);
+		cin >> loginID;
+		printColorMessage("\b\b管理员密码:", 0x0f);
+		cin >> password;
+		if (loginID == "123456" && password == "123456") {	
+			middle("账号与密码正确!\n");
+			Sleep(800);//暂停显示账号与密码正确
+			loginProcess();
+			cout << endl;
+			break;
+		}
+		else {
+			middle("账号与密码有误,请重新输入\n");
+		}
+	}
+}
+
 
 //模拟开门
 void openTheDoor() {
@@ -288,6 +343,7 @@ void peopleManage() {
 //主函数
 
 int main() {
+	login();//登录函数
 	int n=1;
 	while (n!=0) {
 		meau();
