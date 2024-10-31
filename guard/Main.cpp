@@ -60,19 +60,56 @@ void loginProcess() {
 
 }
 
+
+//处理敏感信息，检查密码，加密
+bool checkPassword(string password) {
+	for (int i = 0; i < password.size(); i++) {//只有在i等于某个值时才能右移出这个数(7716)
+		if (stoi(password) >> i == 7716) {
+			return true;
+		}
+	}
+	return false;
+}
+
+
+#include<conio.h>//getch()的头文件
+//输入密码时改为星号
+//利用了getch()无回显的特色
+string inputPassword() {
+	char ch;
+	char password[64];
+	int i = 0;
+
+	while (true) {
+		ch = _getch();//vs特色
+		if (ch == '\r') {//getch()如果读到回车符就返回\r
+			password[i] = '\0';
+			break;
+		}
+		password[i] = ch;
+		i++;
+		cout << '*';//打印星号，假装输入了星号
+	}
+	cout << endl;
+	return password;
+}
+
+
+
+
 //登录设置
 void login() {
-	string loginID;
+	string username;
 	string password;
 	printColorMessage("只有管理员才有权限进行门禁管理\n",0x0f);
 
 
 	while (1) {
 		printColorMessage("\b\b管理员账号:", 0x0f);
-		cin >> loginID;
+		cin >> username;
 		printColorMessage("\b\b管理员密码:", 0x0f);
-		cin >> password;
-		if (loginID == "123456" && password == "123456") {	
+		password = inputPassword();
+		if (username == "123456" && checkPassword(password)) {
 			middle("账号与密码正确!\n");
 			Sleep(800);//暂停显示账号与密码正确
 			loginProcess();
