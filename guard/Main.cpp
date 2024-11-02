@@ -1,4 +1,7 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include<Windows.h>
+#include<ctime>
 #include"myDoorManage.h"
 #include"myGuardManage.h"
 #include"myPeopleManage.h"
@@ -12,6 +15,7 @@ extern int guardID;
 extern vector<Guard> g;
 extern int peopleID;
 extern vector<People> p;
+vector<string>myLog;
 
 
 
@@ -82,13 +86,20 @@ string inputPassword() {
 
 	while (true) {
 		ch = _getch();//vs特色
+		
 		if (ch == '\r') {//getch()如果读到回车符就返回\r
 			password[i] = '\0';
 			break;
 		}
-		password[i] = ch;
-		i++;
-		cout << '*';//打印星号，假装输入了星号
+		if (ch == '\b') {
+			cout << "\b \b";//实现退格效果!!!!!!!
+			i--;
+		}
+		else {
+			password[i] = ch;
+			cout << '*';//打印星号，假装输入了星号
+			i++;
+		}
 	}
 	cout << endl;
 	return password;
@@ -123,6 +134,32 @@ void login() {
 }
 
 
+
+
+//开门记录
+void openDoorLog(string name,int building,int unit) {
+	time_t now = time(0);
+
+	string nowTime = ctime(&now);
+
+	nowTime.erase(nowTime.find('\n'));//删除结尾的换行
+
+	string tempLog = nowTime + "  " + name + "打开了" + to_string(building) + "号楼" + to_string(unit) + "单元";
+	myLog.push_back(tempLog);
+}
+
+
+void showLog() {
+	if (myLog.empty()) {
+		cout << "暂无开门记录" << endl;
+		return;
+	}
+	for (string evertLog : myLog) {
+		cout << evertLog<<endl;
+	}
+}
+
+
 //模拟开门
 void openTheDoor() {
 	string name;
@@ -136,7 +173,9 @@ void openTheDoor() {
 		if (P.m_name == name) {
 			int building = (P.haveGuard-P.m_peopleKey) / 10 % 10;
 			int unit = (P.haveGuard - P.m_peopleKey) % 10;
-			cout << name << "能打开的门是(除大门)" << building << "号楼" << unit << "单元" << endl;
+			//cout << name << "能打开的门是(除大门)" << building << "号楼" << unit << "单元" << endl;
+			cout << name << "打开了" << building << "号楼" << unit << "单元" << "的门" << endl;
+			openDoorLog(name, building, unit);
 			break;
 		}
 	}
@@ -145,39 +184,6 @@ void openTheDoor() {
 }
 
 
-//int unlocking(int key) {
-//	int flag=0;
-//	for (Door tempDoor : d) {//遍历已存在的门
-//		if (key / 100 == 1&&flag==0) {//如果该门禁的key能打开单元门，则一定能打开大门
-//			cout << "大门已打开!" << endl;
-//			flag = 1;
-//		}
-//
-//		if (key == tempDoor.Key) {
-//			cout <<tempDoor.m_type<<tempDoor.Key << "已打开!" << endl;
-//			flag= 2;
-//		}
-//	}
-//	Sleep(1000);
-//	return flag;
-//}
-//
-//
-//void openTheDoor(class TurePeople people) {
-//
-//	for (Guard tempG : people.HaveGuard) {//遍历这个人拥有的门禁
-//		if (unlocking(tempG.Key)==2) {//确认这个门禁能打开哪些锁
-//			cout << "欢迎业主回家!" << endl;
-//		}
-//		else if (unlocking(tempG.Key) == 1) {
-//			cout << "您拥有进入本小区的资格" << endl;
-//		}
-//		else {
-//			cout << "外来人请勿进入!" << endl;
-//		}
-//		Sleep(1000);
-//	}
-//}
 
 
 void meau() {
@@ -187,6 +193,7 @@ void meau() {
 	middle("=        2.门禁卡  管理        =\n");
 	middle("=        3.居户信息管理        =\n");
 	middle("=        4. 模 拟 开 门        =\n");
+	middle("=        5.查看开门记录        =\n");
 	middle("=            0.exit            =\n");
 	middle("================================\n");
 }
@@ -388,7 +395,7 @@ int main() {
 		cin >> n;
 		
 		//判断是否有效
-		if (n >= 0 && n <= 4) {
+		if (n >= 0 && n <= 5) {
 			system("cls");
 			switch (n)
 			{
@@ -403,6 +410,9 @@ int main() {
 				break;
 			case 4:
 				openTheDoor();
+				break;
+			case 5:
+				showLog();
 				break;
 			default:
 				cout << "已退出程序" << endl;
