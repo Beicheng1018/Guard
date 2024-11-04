@@ -49,6 +49,7 @@ void printColorMessage(string str,int color) {
 
 //登录动画
 void loginProcess() {
+	int useTime = 250;
 	system("cls");//清屏
 	middle("正在初始化\n");
 	middle("\b\b\b\b\b\b");//退格，为了好看
@@ -58,7 +59,8 @@ void loginProcess() {
 			color = i - 7;
 		}
 		printColorMessageN("**",0x09+color);
-		Sleep(250);
+		Sleep(useTime);
+		useTime -= 30;//实现越加载越快
 	}
 	//system("cls");//清屏
 
